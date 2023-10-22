@@ -3,7 +3,7 @@ package com.yurykorzun.demo.microservices.springboot.service.customer.service;
 import com.yurykorzun.demo.microservices.springboot.commons.config.PersistenceExceptionsHandlingConfig;
 import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.EntityNotFoundException;
 import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.PersistenceExceptionsProcessor;
-import com.yurykorzun.demo.microservices.springboot.service.customer.dto.CustomerDto;
+import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerDto;
 import com.yurykorzun.demo.microservices.springboot.service.customer.entity.Customer;
 import com.yurykorzun.demo.microservices.springboot.service.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;

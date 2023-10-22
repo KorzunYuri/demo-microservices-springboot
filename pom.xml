@@ -35,6 +35,7 @@
         <port.service.credit>8082</port.service.credit>
 
         <service.customer.url.port>${port.service.customer}</service.customer.url.port>
+        <service.customer.uri>http://localhost:${service.customer.url.port}</service.customer.uri>
 
     </properties>
 

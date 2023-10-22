@@ -1,7 +1,7 @@
 package com.yurykorzun.demo.microservices.springboot.service.customer.controller;
 
 import com.yurykorzun.demo.microservices.springboot.commons.config.ReactiveWebExceptionsConfig;
-import com.yurykorzun.demo.microservices.springboot.service.customer.dto.CustomerDto;
+import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerDto;
 import com.yurykorzun.demo.microservices.springboot.service.customer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Import;
