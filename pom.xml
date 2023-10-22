@@ -7,6 +7,7 @@
     <modules>
         <module>customer-service</module>
         <module>commons</module>
+        <module>credit-service</module>
     </modules>
 
     <parent>
@@ -27,7 +28,13 @@
         <version.spring.boot>3.1.5</version.spring.boot>
         <version.spring.cloud>2022.0.3</version.spring.cloud>
 
-        <service.customer.url.port>8081</service.customer.url.port>
+        <!-- occupied ports, gathered in one place -->
+        <port.db.mysql>3306</port.db.mysql>
+        <port.db.mongo>27017</port.db.mongo>
+        <port.service.customer>8081</port.service.customer>
+        <port.service.credit>8082</port.service.credit>
+
+        <service.customer.url.port>${port.service.customer}</service.customer.url.port>
 
     </properties>
 
