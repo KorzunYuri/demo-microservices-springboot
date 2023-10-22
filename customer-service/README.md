@@ -8,6 +8,7 @@ Responsible for customer management and storage.
 | storage          | mysql              |
 | database changes | liquibase          |
 
+- TODO use record versioning
 
 - TODO use synchronous web in another service</p>
 - TODO use Flyway in another service</p>
