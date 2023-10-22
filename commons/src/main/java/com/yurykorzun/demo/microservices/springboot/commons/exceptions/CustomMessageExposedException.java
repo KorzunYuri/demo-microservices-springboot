@@ -4,8 +4,8 @@ public class CustomMessageExposedException extends MessageExposedException {
 
     private final String message;
 
-    public CustomMessageExposedException(Exception e, String message) {
-        super(e);
+    public CustomMessageExposedException(String message) {
+        super();
         this.message = message;
     }
 

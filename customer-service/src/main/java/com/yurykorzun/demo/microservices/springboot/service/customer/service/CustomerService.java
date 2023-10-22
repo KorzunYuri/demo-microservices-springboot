@@ -1,6 +1,7 @@
 package com.yurykorzun.demo.microservices.springboot.service.customer.service;
 
 import com.yurykorzun.demo.microservices.springboot.commons.config.PersistenceExceptionsHandlingConfig;
+import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.EntityNotFoundException;
 import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.PersistenceExceptionsProcessor;
 import com.yurykorzun.demo.microservices.springboot.service.customer.dto.CustomerDto;
 import com.yurykorzun.demo.microservices.springboot.service.customer.entity.Customer;
@@ -29,7 +30,7 @@ public class CustomerService {
 
     public CustomerDto getById(String id) {
         Customer entity = this.customerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Resource %s not found", id)));
+                .orElseThrow(() -> new EntityNotFoundException("Customer", id));
         CustomerDto dto = toDto(entity);
         return dto;
     }

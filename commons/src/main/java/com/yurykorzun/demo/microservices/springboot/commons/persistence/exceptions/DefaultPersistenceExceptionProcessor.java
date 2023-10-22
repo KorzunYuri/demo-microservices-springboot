@@ -18,9 +18,9 @@ public class DefaultPersistenceExceptionProcessor implements PersistenceExceptio
         if (e instanceof DataIntegrityViolationException) {
             Throwable cause = e.getCause();
             if (cause instanceof ConstraintViolationException cve) {
-                result = new CustomMessageExposedException(e, String.format("Constraint violated for %s", cve.getConstraintName()));
+                result = new CustomMessageExposedException(String.format("Constraint violated for %s", cve.getConstraintName()));
             } else if (cause instanceof PropertyValueException pve) {
-                result = new CustomMessageExposedException(e, String.format("Illegal value for property %s.%s", pve.getEntityName(), pve.getPropertyName()));
+                result = new CustomMessageExposedException(String.format("Illegal value for property %s.%s", pve.getEntityName(), pve.getPropertyName()));
             }
         }
         return result;
