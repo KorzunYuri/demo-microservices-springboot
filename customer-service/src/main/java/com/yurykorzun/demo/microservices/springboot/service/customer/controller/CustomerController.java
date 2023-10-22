@@ -13,6 +13,12 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
+    @GetMapping("/{id}")
+    @ResponseBody
+    public Mono<CustomerDto> getById(@PathVariable String id) {
+        return Mono.just(this.customerService.getById(id));
+    }
+
     @PostMapping
     @ResponseBody
     public Mono<String> addCustomer(@RequestBody CustomerDto dto) {
