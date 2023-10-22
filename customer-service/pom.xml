@@ -37,6 +37,13 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <!--    cross-module dependencies  -->
+        <dependency>
+            <groupId>com.yurykorzun</groupId>
+            <artifactId>commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
