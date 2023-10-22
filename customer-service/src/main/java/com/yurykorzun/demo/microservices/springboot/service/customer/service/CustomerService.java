@@ -1,21 +1,30 @@
 package com.yurykorzun.demo.microservices.springboot.service.customer.service;
 
+import com.yurykorzun.demo.microservices.springboot.commons.config.PersistenceExceptionsHandlingConfig;
+import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.PersistenceExceptionsProcessor;
 import com.yurykorzun.demo.microservices.springboot.service.customer.dto.CustomerDto;
 import com.yurykorzun.demo.microservices.springboot.service.customer.entity.Customer;
 import com.yurykorzun.demo.microservices.springboot.service.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Import(PersistenceExceptionsHandlingConfig.class)
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final PersistenceExceptionsProcessor persistenceExceptionProcessor;
 
-    public String add(CustomerDto dto) {
+    public String add(CustomerDto dto) throws Exception {
         //  TODO introduce validation approach: better on controller level
         validateNewCustomer(dto);
-        return customerRepository.save(fromDto(dto)).getId();
+        try {
+            return customerRepository.save(fromDto(dto)).getId();
+        } catch (Exception e) {
+            throw persistenceExceptionProcessor.process(e);
+        }
     }
 
     private void validateNewCustomer(CustomerDto dto) throws IllegalArgumentException {

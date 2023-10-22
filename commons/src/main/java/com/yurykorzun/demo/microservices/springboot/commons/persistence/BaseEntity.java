@@ -1,5 +1,6 @@
 package com.yurykorzun.demo.microservices.springboot.commons.persistence;
 
+import com.yurykorzun.demo.microservices.springboot.commons.utils.UuidGenerator;
 import jakarta.persistence.*;
 import lombok.Getter;
 

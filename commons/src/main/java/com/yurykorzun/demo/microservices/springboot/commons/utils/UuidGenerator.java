@@ -1,11 +1,11 @@
-package com.yurykorzun.demo.microservices.springboot.commons.persistence;
+package com.yurykorzun.demo.microservices.springboot.commons.utils;
 
 import java.util.Random;
 import java.util.UUID;
 
 public class UuidGenerator {
 
-    static String randomUuid() {
+    public static String randomUuid() {
         Random random = new Random();
         return new UUID(random.nextLong(), random.nextLong()).toString();
     }
