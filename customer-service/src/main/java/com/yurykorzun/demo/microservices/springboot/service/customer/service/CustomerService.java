@@ -27,6 +27,13 @@ public class CustomerService {
         }
     }
 
+    public CustomerDto getById(String id) {
+        Customer entity = this.customerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Resource %s not found", id)));
+        CustomerDto dto = toDto(entity);
+        return dto;
+    }
+
     private void validateNewCustomer(CustomerDto dto) throws IllegalArgumentException {
         //  TODO check that id is not provided, there are no another user with this passportId etc.
     }
@@ -42,7 +49,7 @@ public class CustomerService {
                 .firstName(         dto.getFirstName()      )
                 .lastName(          dto.getLastName()       )
                 .passportId(        dto.getPassportId()     )
-                .build();
+            .build();
     }
 
     private CustomerDto toDto(Customer src) {
@@ -51,7 +58,7 @@ public class CustomerService {
                 .firstName(         src.getFirstName()      )
                 .lastName(          src.getLastName()       )
                 .passportId(        src.getPassportId()     )
-                .build();
+            .build();
     }
-
+  
 }
