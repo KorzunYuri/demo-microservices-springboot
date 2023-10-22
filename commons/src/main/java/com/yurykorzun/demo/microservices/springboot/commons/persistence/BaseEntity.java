@@ -17,15 +17,15 @@ import java.util.Date;
 public abstract class BaseEntity {
 
     @Id
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = BaseEntityFields.ID, updatable = false, nullable = false)
     private String id = UuidGenerator.randomUuid();
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATED_AT", updatable = false, nullable = false)
+    @Column(name = BaseEntityFields.CREATED_AT, updatable = false, nullable = false)
     private Date createdAt = new Date();
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "UPDATED_AT", updatable = false, nullable = false)
+    @Column(name = BaseEntityFields.UPDATED_AT, updatable = false, nullable = false)
     private Date updatedAt = new Date();
 
 }

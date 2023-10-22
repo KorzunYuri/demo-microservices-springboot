@@ -1,15 +1,15 @@
-package com.yurykorzun.demo.microservices.springboot.service.credit.model;
+package com.yurykorzun.demo.microservices.springboot.commons.model.credit;
 
 import lombok.Getter;
 
 @Getter
-public enum Currency {
+public enum CreditCurrency {
 
     USD ("USA dollar"), EUR("Euro");
 
     private String description;
 
-    Currency(String desc) {
+    CreditCurrency(String desc) {
         this.description = desc;
     }
 
