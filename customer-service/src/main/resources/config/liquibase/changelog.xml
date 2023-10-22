@@ -16,4 +16,7 @@
     <changeSet id="2" author="Yury Korzun">
         <sqlFile path="./changesets/20231022150000_0002_customer_tracking_fields.sql"   relativeToChangelogFile="true"/>
     </changeSet>
+    <changeSet id="3" author="Yury Korzun">
+        <sqlFile path="./changesets/20231022152000_0003_customer_passport_unique.sql"   relativeToChangelogFile="true"/>
+    </changeSet>
 </databaseChangeLog>
