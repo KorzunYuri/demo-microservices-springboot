@@ -1,5 +1,6 @@
 package com.yurykorzun.demo.microservices.springboot.service.credit.entity;
 
+import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerDto;
 import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditApplicationRegistrationStatus;
 import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditCurrency;
 import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditApplicationDeclineReason;
@@ -19,9 +20,9 @@ public class CreditApplication {
     @Id
     private String id;
 
-    private String customerId;
+    private CustomerDto customer;
 
-    private String guarantorId;
+    private CustomerDto guarantor;
 
     private CreditCurrency currency;
 
@@ -37,5 +38,8 @@ public class CreditApplication {
 
     @Setter
     private CreditApplicationDeclineReason declineReason;
+
+    @Setter
+    private String declineMessage;
 
 }

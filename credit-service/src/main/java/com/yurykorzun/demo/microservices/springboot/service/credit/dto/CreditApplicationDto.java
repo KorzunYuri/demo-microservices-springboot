@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 @ToString
 public class CreditApplicationDto {
 
+    private String id;
+
     private CustomerDto customer;
 
     private CustomerDto guarantor;
