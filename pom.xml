@@ -8,6 +8,7 @@
         <module>customer-service</module>
         <module>commons</module>
         <module>credit-service</module>
+        <module>descovery-service</module>
     </modules>
 
     <parent>
@@ -28,15 +29,20 @@
         <version.spring.boot>3.1.5</version.spring.boot>
         <version.spring.cloud>2022.0.3</version.spring.cloud>
 
-        <!-- occupied ports, gathered in one place -->
+        <!-- occupied ports, gathered in one place
+            ports may be overridden by service properties to enable discovery!-->
         <port.db.mysql>3306</port.db.mysql>
         <port.db.mongo>27017</port.db.mongo>
         <port.service.customer>8081</port.service.customer>
         <port.service.credit>8082</port.service.credit>
+        <port.service.discovery>8761</port.service.discovery>
 
         <service.customer.url.port>${port.service.customer}</service.customer.url.port>
         <service.customer.uri>http://localhost:${service.customer.url.port}</service.customer.uri>
 
+        <!-- discovery-service -->
+        <service.discovery.name>discovery-service</service.discovery.name>
+        <service.discovery.eureka.service-url.default-zone>http://localhost:${port.service.discovery}/eureka</service.discovery.eureka.service-url.default-zone>
     </properties>
 
     <profiles>
