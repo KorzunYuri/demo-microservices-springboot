@@ -37,8 +37,12 @@
         <port.service.credit>8082</port.service.credit>
         <port.service.discovery>8761</port.service.discovery>
 
-        <service.customer.url.port>${port.service.customer}</service.customer.url.port>
-        <service.customer.uri>http://localhost:${service.customer.url.port}</service.customer.uri>
+        <!-- SERVICES -->
+        <!-- customer-service -->
+        <service.customer.name>customer-service</service.customer.name>
+        <service.customer.uri>http://${service.customer.name}</service.customer.uri>
+        <!-- credit-service -->
+        <service.credit.name>credit-service</service.credit.name>
 
         <!-- discovery-service -->
         <service.discovery.name>discovery-service</service.discovery.name>
