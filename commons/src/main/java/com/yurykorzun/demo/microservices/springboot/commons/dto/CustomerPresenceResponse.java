@@ -17,5 +17,6 @@ public class CustomerPresenceResponse {
 
     private CustomerPresenceStatus presenceStatus;
 
+    @Builder.Default
     private Date timestamp = new Date();
 }
