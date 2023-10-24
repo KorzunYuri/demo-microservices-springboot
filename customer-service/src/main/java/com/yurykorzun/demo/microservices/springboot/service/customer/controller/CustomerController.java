@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/customer")
+@RequestMapping("${api.v1.path}")
 @RequiredArgsConstructor
 @Import(ReactiveWebExceptionsConfig.class) // example of importing beans from outer module
 public class CustomerController {
@@ -31,7 +31,7 @@ public class CustomerController {
         return Mono.just(this.customerService.checkCustomer(customerInfo));
     }
 
-    @PostMapping
+    @PostMapping("/")
     @ResponseBody
     public Mono<String> addCustomer(@RequestBody CustomerDto dto) throws Exception {
         return Mono.just(this.customerService.add(dto));

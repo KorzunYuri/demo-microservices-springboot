@@ -12,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 import static com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerFields.*;
 import static com.yurykorzun.demo.microservices.springboot.commons.persistence.BaseEntityFields.*;
@@ -53,12 +50,12 @@ public class CustomerService {
     public CustomerPresenceResponse checkCustomer(Map<String, String> customerInfo) {
 
         //  filter search params
-        Set<String> allowedParams = Set.of(
-                ID, FIRST_NAME, LAST_NAME, PASSPORT_ID
-        );
+        Set<String> allowedParams = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
+        allowedParams.addAll(List.of(ID, FIRST_NAME, LAST_NAME, PASSPORT_ID));
+
         Map<String, String> params = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         customerInfo.forEach((key, value) -> {
-            if (allowedParams.contains(key)) params.put(key, value);
+            if (allowedParams.contains(key.toUpperCase())) params.put(key, value);
         });
 
         //  prepare response
