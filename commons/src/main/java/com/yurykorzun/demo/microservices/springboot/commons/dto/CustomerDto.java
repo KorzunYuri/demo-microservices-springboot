@@ -1,17 +1,20 @@
-package com.yurykorzun.demo.microservices.springboot.service.customer.dto;
+package com.yurykorzun.demo.microservices.springboot.commons.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class CustomerDto {
+
     private String id;
+
     private String firstName;
+
     private String lastName;
+
+    @ToString.Exclude
     private String passportId;
 }
