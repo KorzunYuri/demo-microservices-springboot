@@ -7,6 +7,9 @@
     <modules>
         <module>customer-service</module>
         <module>commons</module>
+        <module>credit-service</module>
+        <module>descovery-service</module>
+        <module>api-gateway</module>
     </modules>
 
     <parent>
@@ -27,8 +30,28 @@
         <version.spring.boot>3.1.5</version.spring.boot>
         <version.spring.cloud>2022.0.3</version.spring.cloud>
 
-        <service.customer.url.port>8081</service.customer.url.port>
+        <!-- occupied ports, gathered in one place -->
+        <!-- TODO make services` ports configrable via run properties -->
+        <port.db.mysql>3306</port.db.mysql>
+        <port.db.mongo>27017</port.db.mongo>
+        <port.service.api-gateway>8080</port.service.api-gateway>
+        <port.service.discovery>8761</port.service.discovery>
 
+        <!-- SERVICES -->
+        <!-- customer-service -->
+        <service.customer.name>customer-service</service.customer.name>
+        <service.customer.uri>http://${service.customer.name}</service.customer.uri>
+        <service.customer.api.v1.path>/api/v1/customer</service.customer.api.v1.path>
+        <!-- credit-service -->
+        <service.credit.name>credit-service</service.credit.name>
+        <service.credit.api.v1.path>/api/v1/credit</service.credit.api.v1.path>
+
+        <!-- discovery-service -->
+        <service.discovery.name>discovery-service</service.discovery.name>
+        <service.discovery.eureka.service-url.default-zone>http://localhost:${port.service.discovery}/eureka</service.discovery.eureka.service-url.default-zone>
+
+        <!-- api-gateway -->
+        <service.api-gateway.name>api-gateway</service.api-gateway.name>
     </properties>
 
     <profiles>

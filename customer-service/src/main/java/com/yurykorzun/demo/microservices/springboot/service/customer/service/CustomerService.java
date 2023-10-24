@@ -1,14 +1,21 @@
 package com.yurykorzun.demo.microservices.springboot.service.customer.service;
 
 import com.yurykorzun.demo.microservices.springboot.commons.config.PersistenceExceptionsHandlingConfig;
+import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerDto;
+import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerPresenceResponse;
+import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerPresenceStatus;
 import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.EntityNotFoundException;
 import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.PersistenceExceptionsProcessor;
-import com.yurykorzun.demo.microservices.springboot.service.customer.dto.CustomerDto;
 import com.yurykorzun.demo.microservices.springboot.service.customer.entity.Customer;
 import com.yurykorzun.demo.microservices.springboot.service.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+import static com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerFields.*;
+import static com.yurykorzun.demo.microservices.springboot.commons.persistence.BaseEntityFields.*;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +47,59 @@ public class CustomerService {
         //  TODO check that id is not provided, there are no another user with this passportId etc.
     }
 
+    public CustomerPresenceResponse checkCustomer(Map<String, String> customerInfo) {
+
+        //  filter search params
+        Set<String> allowedParams = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
+        allowedParams.addAll(List.of(ID, FIRST_NAME, LAST_NAME, PASSPORT_ID));
+
+        Map<String, String> params = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        customerInfo.forEach((key, value) -> {
+            if (allowedParams.contains(key.toUpperCase())) params.put(key, value);
+        });
+
+        //  prepare response
+        var builder = CustomerPresenceResponse.builder();
+
+        //  find customer
+        Optional<Customer> opt = Optional.empty();
+        if (params.containsKey(ID)) {
+            opt = customerRepository.findById(params.get(ID));
+        } else if (params.containsKey(PASSPORT_ID)) {
+            opt = customerRepository.findByPassportId(params.get(PASSPORT_ID));
+        }
+        if (opt.isEmpty()) {
+            return builder.presenceStatus(CustomerPresenceStatus.NOT_FOUND).build();
+        }
+
+        //  compare to input
+        Customer customer = opt.get();
+        boolean shouldExposeInfo = false;
+        if (params.containsKey(PASSPORT_ID) && !customer.getPassportId().equals(params.get(PASSPORT_ID)))
+        {
+            builder.presenceStatus(CustomerPresenceStatus.INFO_MISMATCH);
+        } else if  ((params.containsKey(FIRST_NAME) && (!params.get(FIRST_NAME).equals(customer.getFirstName())))
+                ||  (params.containsKey(LAST_NAME)  && (!params.get(LAST_NAME).equals(customer.getLastName()))))
+        {
+            //  id and/or passport match, we can let client know the customer info
+            builder.presenceStatus(CustomerPresenceStatus.INFO_MISMATCH);
+            shouldExposeInfo = true;
+        } else {
+            //  all good
+            builder.presenceStatus(CustomerPresenceStatus.PRESENT);
+            shouldExposeInfo = true;
+        }
+        if (shouldExposeInfo) {
+            builder.customer(CustomerDto.builder()
+                                    .id(            customer.getId()            )
+                                    .passportId(    customer.getPassportId()    )
+                                    .firstName(     customer.getFirstName()     )
+                                    .lastName(      customer.getLastName()      )
+                                .build());
+        }
+        return builder.build();
+    }
+
     /*
         dto -> entity and vise versa mapping
         TODO use mapper, e.g. Dozer, Mapstruct, ModelMapper. Exclude BaseEntity tracking fields (createdAt, updatedAt)
@@ -62,5 +122,6 @@ public class CustomerService {
                 .passportId(src.getPassportId())
                 .build();
     }
+
 }
 
