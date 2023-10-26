@@ -1,8 +1,8 @@
 package com.yurykorzun.demo.microservices.springboot.service.credit.controller;
 
 import com.yurykorzun.demo.microservices.springboot.commons.config.ReactiveWebExceptionsConfig;
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CreditApplicationResponse;
 import com.yurykorzun.demo.microservices.springboot.service.credit.dto.CreditApplicationDto;
+import com.yurykorzun.demo.microservices.springboot.service.credit.dto.CreditApplicationResponse;
 import com.yurykorzun.demo.microservices.springboot.service.credit.service.CreditApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Import;

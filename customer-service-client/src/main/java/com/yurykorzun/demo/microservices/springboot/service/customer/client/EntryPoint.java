@@ -1,4 +1,4 @@
-package com.yurykorzun.demo.microservices.springboot.commons;
+package com.yurykorzun.demo.microservices.springboot.service.customer.client;
 
 public class EntryPoint {
 
@@ -9,4 +9,5 @@ public class EntryPoint {
                 EntryPoint.class
         );
     }
+
 }

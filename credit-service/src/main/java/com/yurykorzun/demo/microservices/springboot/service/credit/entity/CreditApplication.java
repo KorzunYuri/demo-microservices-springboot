@@ -1,9 +1,9 @@
 package com.yurykorzun.demo.microservices.springboot.service.credit.entity;
 
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerDto;
-import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditApplicationRegistrationStatus;
-import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditCurrency;
-import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditApplicationDeclineReason;
+import com.yurykorzun.demo.microservices.springboot.service.credit.model.CreditApplicationDeclineReason;
+import com.yurykorzun.demo.microservices.springboot.service.credit.model.CreditApplicationRegistrationStatus;
+import com.yurykorzun.demo.microservices.springboot.service.credit.model.CreditCurrency;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerDto;
 import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
