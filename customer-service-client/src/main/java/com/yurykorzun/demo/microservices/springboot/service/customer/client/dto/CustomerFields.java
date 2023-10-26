@@ -1,4 +1,4 @@
-package com.yurykorzun.demo.microservices.springboot.commons.dto;
+package com.yurykorzun.demo.microservices.springboot.service.customer.client.dto;
 
 /**
  *  some boilerprint code to avoid typos in boilerprint code

@@ -1,4 +1,4 @@
-package com.yurykorzun.demo.microservices.springboot.commons.dto;
+package com.yurykorzun.demo.microservices.springboot.service.customer.client.dto;
 
 import lombok.*;
 
