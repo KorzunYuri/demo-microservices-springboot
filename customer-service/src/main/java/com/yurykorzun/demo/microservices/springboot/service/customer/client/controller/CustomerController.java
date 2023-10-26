@@ -1,12 +1,11 @@
-package com.yurykorzun.demo.microservices.springboot.service.customer.controller;
+package com.yurykorzun.demo.microservices.springboot.service.customer.client.controller;
 
 import com.yurykorzun.demo.microservices.springboot.commons.config.ReactiveWebExceptionsConfig;
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerDto;
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerPresenceResponse;
-import com.yurykorzun.demo.microservices.springboot.service.customer.service.CustomerService;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerDto;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerPresenceResponse;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 

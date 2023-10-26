@@ -6,7 +6,7 @@ public class EntryPoint {
         System.out.printf(
                 "%s.%s entrypoint. Should`ve never been entered but here we are",
                 EntryPoint.class.getPackage().getName(),
-                EntryPoint.class.toString()
+                EntryPoint.class
         );
     }
 }

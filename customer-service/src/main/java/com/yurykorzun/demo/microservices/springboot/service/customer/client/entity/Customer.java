@@ -1,7 +1,7 @@
-package com.yurykorzun.demo.microservices.springboot.service.customer.entity;
+package com.yurykorzun.demo.microservices.springboot.service.customer.client.entity;
 
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerFields;
 import com.yurykorzun.demo.microservices.springboot.commons.persistence.BaseEntity;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerFields;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,20 +1,20 @@
-package com.yurykorzun.demo.microservices.springboot.service.customer.service;
+package com.yurykorzun.demo.microservices.springboot.service.customer.client.service;
 
 import com.yurykorzun.demo.microservices.springboot.commons.config.PersistenceExceptionsHandlingConfig;
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerDto;
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerPresenceResponse;
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerPresenceStatus;
 import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.EntityNotFoundException;
 import com.yurykorzun.demo.microservices.springboot.commons.persistence.exceptions.PersistenceExceptionsProcessor;
-import com.yurykorzun.demo.microservices.springboot.service.customer.entity.Customer;
-import com.yurykorzun.demo.microservices.springboot.service.customer.repository.CustomerRepository;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerDto;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerFields;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerPresenceResponse;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerPresenceStatus;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.entity.Customer;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-import static com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerFields.*;
 import static com.yurykorzun.demo.microservices.springboot.commons.persistence.BaseEntityFields.*;
 
 @Service
@@ -51,7 +51,7 @@ public class CustomerService {
 
         //  filter search params
         Set<String> allowedParams = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
-        allowedParams.addAll(List.of(ID, FIRST_NAME, LAST_NAME, PASSPORT_ID));
+        allowedParams.addAll(List.of(ID, CustomerFields.FIRST_NAME, CustomerFields.LAST_NAME, CustomerFields.PASSPORT_ID));
 
         Map<String, String> params = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         customerInfo.forEach((key, value) -> {
@@ -65,8 +65,8 @@ public class CustomerService {
         Optional<Customer> opt = Optional.empty();
         if (params.containsKey(ID)) {
             opt = customerRepository.findById(params.get(ID));
-        } else if (params.containsKey(PASSPORT_ID)) {
-            opt = customerRepository.findByPassportId(params.get(PASSPORT_ID));
+        } else if (params.containsKey(CustomerFields.PASSPORT_ID)) {
+            opt = customerRepository.findByPassportId(params.get(CustomerFields.PASSPORT_ID));
         }
         if (opt.isEmpty()) {
             return builder.presenceStatus(CustomerPresenceStatus.NOT_FOUND).build();
@@ -75,11 +75,11 @@ public class CustomerService {
         //  compare to input
         Customer customer = opt.get();
         boolean shouldExposeInfo = false;
-        if (params.containsKey(PASSPORT_ID) && !customer.getPassportId().equals(params.get(PASSPORT_ID)))
+        if (params.containsKey(CustomerFields.PASSPORT_ID) && !customer.getPassportId().equals(params.get(CustomerFields.PASSPORT_ID)))
         {
             builder.presenceStatus(CustomerPresenceStatus.INFO_MISMATCH);
-        } else if  ((params.containsKey(FIRST_NAME) && (!params.get(FIRST_NAME).equals(customer.getFirstName())))
-                ||  (params.containsKey(LAST_NAME)  && (!params.get(LAST_NAME).equals(customer.getLastName()))))
+        } else if  ((params.containsKey(CustomerFields.FIRST_NAME) && (!params.get(CustomerFields.FIRST_NAME).equals(customer.getFirstName())))
+                ||  (params.containsKey(CustomerFields.LAST_NAME)  && (!params.get(CustomerFields.LAST_NAME).equals(customer.getLastName()))))
         {
             //  id and/or passport match, we can let client know the customer info
             builder.presenceStatus(CustomerPresenceStatus.INFO_MISMATCH);

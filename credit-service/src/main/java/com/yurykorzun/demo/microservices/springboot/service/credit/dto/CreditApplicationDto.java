@@ -1,7 +1,7 @@
 package com.yurykorzun.demo.microservices.springboot.service.credit.dto;
 
-import com.yurykorzun.demo.microservices.springboot.commons.dto.CustomerDto;
-import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditCurrency;
+import com.yurykorzun.demo.microservices.springboot.service.credit.model.CreditCurrency;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.dto.CustomerDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

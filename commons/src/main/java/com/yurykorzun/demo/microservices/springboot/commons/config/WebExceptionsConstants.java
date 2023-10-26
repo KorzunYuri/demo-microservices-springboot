@@ -1,4 +1,4 @@
-package com.yurykorzun.demo.microservices.springboot.commons.web.exceptions;
+package com.yurykorzun.demo.microservices.springboot.commons.config;
 
 public abstract class WebExceptionsConstants {
 

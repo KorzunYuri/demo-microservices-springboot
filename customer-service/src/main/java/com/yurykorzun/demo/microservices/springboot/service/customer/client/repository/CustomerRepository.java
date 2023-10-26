@@ -1,6 +1,6 @@
-package com.yurykorzun.demo.microservices.springboot.service.customer.repository;
+package com.yurykorzun.demo.microservices.springboot.service.customer.client.repository;
 
-import com.yurykorzun.demo.microservices.springboot.service.customer.entity.Customer;
+import com.yurykorzun.demo.microservices.springboot.service.customer.client.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
