@@ -5,11 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>customer-service</module>
         <module>commons</module>
-        <module>credit-service</module>
-        <module>descovery-service</module>
+        <module>discovery-service</module>
         <module>api-gateway</module>
+        <module>customer-service-client</module>
+        <module>credit-service-client</module>
+        <module>customer-service</module>
+        <module>credit-service</module>
     </modules>
 
     <parent>

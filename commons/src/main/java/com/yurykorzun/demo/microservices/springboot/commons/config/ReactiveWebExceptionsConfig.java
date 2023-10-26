@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 
 import java.util.Map;
 
-import static com.yurykorzun.demo.microservices.springboot.commons.web.exceptions.WebExceptionsConstants.CUSTOM_FIELD;
+import static com.yurykorzun.demo.microservices.springboot.commons.config.WebExceptionsConstants.CUSTOM_FIELD;
 
 @Configuration
 public class ReactiveWebExceptionsConfig {

@@ -48,6 +48,11 @@
             <artifactId>commons</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.yurykorzun</groupId>
+            <artifactId>customer-service-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
