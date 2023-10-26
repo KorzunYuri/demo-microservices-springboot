@@ -1,8 +1,8 @@
-package com.yurykorzun.demo.microservices.springboot.commons.dto;
+package com.yurykorzun.demo.microservices.springboot.service.credit.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditApplicationDeclineReason;
-import com.yurykorzun.demo.microservices.springboot.commons.model.credit.CreditApplicationRegistrationStatus;
+import com.yurykorzun.demo.microservices.springboot.service.credit.model.CreditApplicationDeclineReason;
+import com.yurykorzun.demo.microservices.springboot.service.credit.model.CreditApplicationRegistrationStatus;
 import lombok.*;
 
 @NoArgsConstructor
